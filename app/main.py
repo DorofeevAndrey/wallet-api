@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 
-app = FastAPI(title="Wallet-API")
+from app.api.v1 import wallets
 
+app = FastAPI(title="Wallet API")
 
-@app.get("/")
-def root():
-    return {"status": "ok"}
+app.include_router(wallets.router, prefix="/api/v1")
