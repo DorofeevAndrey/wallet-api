@@ -25,4 +25,7 @@ class WalletResponse(BaseModel):
     wallet_id: UUID
     balance: Decimal
 
-    model_config = {"from_attributes": True}
+    model_config = {
+        "from_attributes": True,
+        "json_encoders": {Decimal: lambda v: str(v)},
+    }
