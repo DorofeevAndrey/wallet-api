@@ -4,10 +4,12 @@ from uuid import UUID as PyUUID
 
 from sqlalchemy import CheckConstraint
 from sqlalchemy.dialects.postgresql import UUID as SQLUUID
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Numeric
 
-from app.db.base import Base
+
+class Base(DeclarativeBase):
+    pass
 
 
 class Wallet(Base):
@@ -20,4 +22,4 @@ class Wallet(Base):
         Numeric(10, 2), nullable=False, default=Decimal("0.00")
     )
 
-    __table_args__ = CheckConstraint("balance >= 0", name="positive_balance")
+    __table_args__ = (CheckConstraint("balance >= 0", name="positive_balance"),)

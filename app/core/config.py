@@ -10,8 +10,18 @@ class Settings(BaseSettings):
 
     @property
     def database_url(self) -> str:
+        # Асинхронное подключение для приложения (asyncpg)
         return (
             f"postgresql+asyncpg://{self.POSTGRES_USER}:"
+            f"{self.POSTGRES_PASSWORD}@{self.POSTGRES_HOST}:"
+            f"{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
+        )
+
+    @property
+    def database_url_sync(self) -> str:
+        # Синхронное подключение для Alembic (psycopg2)
+        return (
+            f"postgresql://{self.POSTGRES_USER}:"
             f"{self.POSTGRES_PASSWORD}@{self.POSTGRES_HOST}:"
             f"{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
         )
