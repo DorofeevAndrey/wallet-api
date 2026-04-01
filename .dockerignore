@@ -1,0 +1,22 @@
+# Python environment
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.env
+
+# Logs and temp
+*.log
+*.sqlite3
+*.db
+*.DS_Store
+
+# Git
+.git
+.gitignore
+
+# Docker / IDE
+docker-compose.override.yml
+.vscode
+.idea
