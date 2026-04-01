@@ -33,3 +33,11 @@ services:
       db:
         condition: service_healthy
     command: ["uv", "run", "alembic", "upgrade", "head"]
+  tests:
+    build: .
+    env_file:
+      - .env
+    depends_on:
+      migrations:
+        condition: service_completed_successfully
+    command: ["uv", "run", "pytest", "-q"]
